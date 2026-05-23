@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<div class="art-wrap">
+  <a class="back-link" href="{{ '/' | relative_url }}">← Kthehu</a>
+
+  <div class="art-eyebrow">
+    <span class="cat-badge">{{ page.category }}</span>
+    <span class="dot">·</span>
+    <span style="font-size:0.73rem;color:var(--muted)">{{ page.date | date: "%-d %B %Y" }}</span>
+  </div>
+
+  <h1 class="art-title">{{ page.title }}</h1>
+
+  <div class="art-hero">
+    {% if page.cover %}
+      <img src="{{ page.cover | relative_url }}" alt="{{ page.title }}">
+    {% else %}
+      Foto kryesore
+    {% endif %}
+  </div>
+
+  <div class="art-body">
+    {{ content }}
+  </div>
+</div>
