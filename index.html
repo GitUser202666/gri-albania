@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+{% assign published = site.posts | where: "published", true %}
+{% assign featured = published | first %}
+
+<div class="container">
+
+  {% if featured %}
+  <div class="featured">
+    <div>
+      <div class="feat-label">Shkrimi i fundit</div>
+      <a class="feat-title" href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+      <p class="feat-excerpt">{{ featured.excerpt | strip_html | truncate: 200 }}</p>
+      <div class="post-meta">
+        <span class="cat-badge">{{ featured.category }}</span>
+        <span class="dot">·</span>
+        <span>{{ featured.date | date: "%-d %B %Y" }}</span>
+      </div>
+    </div>
+    <div class="feat-img">
+      {% if featured.cover %}
+        <img src="{{ featured.cover | relative_url }}" alt="{{ featured.title }}">
+      {% else %}
+        Foto kryesore
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="content-wrap">
+    <div>
+      <div class="list-label">Shkrimet e fundit</div>
+      <div class="post-cards">
+        {% for post in published offset:1 limit:10 %}
+        <a class="post-card" href="{{ post.url | relative_url }}">
+          <div>
+            <div class="post-meta" style="margin-bottom:0.4rem">
+              <span class="cat-badge">{{ post.category }}</span>
+              <span class="dot">·</span>
+              <span>{{ post.date | date: "%-d %B %Y" }}</span>
+            </div>
+            <div class="post-card-title">{{ post.title }}</div>
+            <div class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</div>
+          </div>
+          <div class="post-card-img">
+            {% if post.cover %}
+              <img src="{{ post.cover | relative_url }}" alt="{{ post.title }}">
+            {% else %}
+              Foto
+            {% endif %}
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="pub-sidebar">
+      <div class="sidebar-label">Lexo edhe</div>
+      {% for post in published limit:4 %}
+        <a class="sidebar-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% endfor %}
+      <div class="about-box">
+        <strong>GRI-albania.net</strong>
+        <p>Analiza politike dhe letërsi. Shkrime të pavarura mbi Shqipërinë dhe rajonin.</p>
+      </div>
+    </aside>
+  </div>
+
+</div>

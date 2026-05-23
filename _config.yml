@@ -1,0 +1,12 @@
+title: GRI-albania.net
+description: Analiza politike dhe letërsi
+url: "https://GitUser202666.github.io"
+baseurl: "/gri-albania"
+
+permalink: /:year/:month/:day/:title/
+
+timezone: Europe/Tirane
+lang: sq
+
+plugins:
+  - jekyll-feed
